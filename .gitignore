@@ -1,0 +1,40 @@
+HELP.md
+.gradle
+build/
+!notification-service/gradle/wrapper/gradle-wrapper.jar
+!notification-service/core/src/main/**/build/
+!notification-service/core/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!notification-service/core/src/main/**/bin/
+!notification-service/core/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!notification-service/core/src/main/**/out/
+!notification-service/core/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Kotlin ###
+.kotlin

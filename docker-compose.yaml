@@ -1,0 +1,15 @@
+version: "3"
+services:
+  mongo:
+    image: mongo:6-jammy
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-db-data:/data/db
+
+networks:
+  internal:
+
+volumes:
+  mongo-db-data:
+    driver: local

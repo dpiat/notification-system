@@ -1,0 +1,3 @@
+com.dpiataikin.notificationservice.infrastructure.config.DatabaseConfig
+com.dpiataikin.notificationservice.infrastructure.config.MapstructConfig
+com.dpiataikin.notificationservice.infrastructure.config.RepositoryConfig
