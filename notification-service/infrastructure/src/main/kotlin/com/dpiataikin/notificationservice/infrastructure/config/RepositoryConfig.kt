@@ -1,8 +1,10 @@
 package com.dpiataikin.notificationservice.infrastructure.config
 
+import com.dpiataikin.microservice.common.event.starter.publisher.EventPublisher
 import com.dpiataikin.notificationservice.core.repository.ContactRepository
 import com.dpiataikin.notificationservice.core.repository.NotificationRepository
 import com.dpiataikin.notificationservice.infrastructure.mapper.ContactDatabaseMapper
+import com.dpiataikin.notificationservice.infrastructure.mapper.NotificationEventMapper
 import com.dpiataikin.notificationservice.infrastructure.repository.ContactMongoReactiveRepository
 import com.dpiataikin.notificationservice.infrastructure.repository.NotificationMongoReactiveRepository
 import com.dpiataikin.notificationservice.infrastructure.repository.impl.ContactRepositoryImpl
@@ -22,8 +24,14 @@ open class RepositoryConfig {
 
     @Bean
     open fun notificationRepository(
-        notificationMongoReactiveRepository: NotificationMongoReactiveRepository
+        contactMongoReactiveRepository: ContactMongoReactiveRepository,
+        notificationEventMapper: NotificationEventMapper,
+        eventPublisher: EventPublisher
     ): NotificationRepository {
-        return NotificationRepositoryImpl(notificationMongoReactiveRepository)
+        return NotificationRepositoryImpl(
+            contactMongoReactiveRepository,
+            notificationEventMapper,
+            eventPublisher
+        )
     }
 }

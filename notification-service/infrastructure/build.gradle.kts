@@ -4,6 +4,7 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":api"))
     implementation(project(":core"))
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
@@ -13,8 +14,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("org.springframework.kafka:spring-kafka")
-    implementation("org.projectlombok:lombok")
-
+    implementation("com.dpiataikin.microservice.common:event:unspecified")
     implementation("org.mapstruct:mapstruct")
     kapt("org.mapstruct:mapstruct-processor")
 }

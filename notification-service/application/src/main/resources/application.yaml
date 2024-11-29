@@ -10,3 +10,7 @@ spring:
       host: ${MONGO_DATASOURCE_URL:localhost}
       port: ${MONGO_DATASOURCE_PORT:27017}
       database: ${MONGO_DATASOURCE_DATABASE:mydb}
+
+event:
+  bootstrap-servers: ${BOOTSTRAP_SERVERS:localhost:29092}
+  service-name: user-service

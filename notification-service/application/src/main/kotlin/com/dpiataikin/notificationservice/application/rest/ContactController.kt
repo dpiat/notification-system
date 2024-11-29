@@ -1,12 +1,9 @@
 package com.dpiataikin.notificationservice.application.rest
 
-import com.dpiataikin.microservice.common.response.CommonResponse
-import com.dpiataikin.notificationservice.api.payload.ContactPayload
 import com.dpiataikin.notificationservice.api.payload.request.CreateContactRequest
 import com.dpiataikin.notificationservice.api.payload.response.ContactResponse
 import com.dpiataikin.notificationservice.api.payload.response.ListContactResponse
 import com.dpiataikin.notificationservice.application.service.ContactService
-import com.dpiataikin.notificationservice.core.domain.Contact
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Mono
 

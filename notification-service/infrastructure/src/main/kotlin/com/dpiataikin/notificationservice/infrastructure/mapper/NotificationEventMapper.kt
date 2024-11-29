@@ -16,7 +16,16 @@ import org.mapstruct.NullValuePropertyMappingStrategy
     injectionStrategy = InjectionStrategy.CONSTRUCTOR,
     nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
 )
-interface ContactDatabaseMapper {
-    fun toContactEntity(contact: Contact): ContactEntity
-    fun toContact(contactEntity: ContactEntity): Contact
+interface NotificationEventMapper
+
+fun NotificationEventMapper.toDomainEvent(contactEntity: ContactEntity, notification: Notification): DomainEvent {
+    return when (contactEntity.type) {
+        ContactType.EMAIL -> EmailNotification(
+            id = contactEntity.id,
+            userFrom = notification.userFrom,
+            userTo = contactEntity.userId,
+            subject = notification.subject,
+            body = notification.body
+        )
+    }
 }

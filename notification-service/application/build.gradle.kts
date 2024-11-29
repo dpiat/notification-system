@@ -3,10 +3,6 @@ plugins {
     kotlin("kapt") version "1.9.25"
 }
 
-kapt {
-    keepJavacAnnotationProcessors = true
-}
-
 dependencies {
     implementation(project(":api"))
     implementation(project(":core"))
@@ -20,6 +16,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("org.springframework.kafka:spring-kafka")
     implementation("com.dpiataikin.microservice.common:response")
+    implementation("com.dpiataikin.microservice.common:event:unspecified")
     implementation("com.dpiataikin.microservice.common:util")
     implementation("org.mapstruct:mapstruct")
     kapt("org.mapstruct:mapstruct-processor")

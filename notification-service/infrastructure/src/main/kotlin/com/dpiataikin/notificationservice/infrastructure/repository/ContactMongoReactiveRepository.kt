@@ -6,4 +6,5 @@ import reactor.core.publisher.Flux
 
 interface ContactMongoReactiveRepository : ReactiveMongoRepository<ContactEntity, String> {
     fun findAllByUserId(userId: String): Flux<ContactEntity>
+    fun findAllByUserIdIn(userIds: List<String>): Flux<ContactEntity>
 }

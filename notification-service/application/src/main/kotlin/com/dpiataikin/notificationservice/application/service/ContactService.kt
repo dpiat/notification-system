@@ -10,6 +10,5 @@ import reactor.core.publisher.Mono
 @Service
 interface ContactService {
     fun createContact(createContactRequest: CreateContactRequest): Mono<ContactResponse>
-
     fun getContacts(userId: String): Mono<ListContactResponse>
 }

@@ -13,6 +13,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("org.springframework.kafka:spring-kafka")
     implementation("com.dpiataikin.microservice.common:response:unspecified")
+    implementation("com.dpiataikin.microservice.common:event:unspecified")
     implementation("org.mapstruct:mapstruct")
     kapt("org.mapstruct:mapstruct-processor")
 }

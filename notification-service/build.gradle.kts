@@ -2,17 +2,11 @@ plugins {
     kotlin("jvm") version "1.9.25"
     kotlin("kapt") version "1.9.25"
     kotlin("plugin.spring") version "1.9.25"
-    kotlin("plugin.lombok") version "1.8.10"
-    id("io.freefair.lombok") version "5.3.0"
     id("org.springframework.boot") version "3.4.0"
     id("io.spring.dependency-management") version "1.1.6"
 }
 
 val springBootVersion: String by project
-
-kapt {
-    keepJavacAnnotationProcessors = true
-}
 
 allprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
