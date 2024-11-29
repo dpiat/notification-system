@@ -3,14 +3,7 @@ plugins {
     kotlin("kapt") version "1.9.25"
 }
 
-kapt {
-    keepJavacAnnotationProcessors = true
-}
-
 dependencies {
-    implementation(project(":api"))
-    implementation(project(":core"))
-    implementation(project(":infrastructure"))
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
@@ -19,8 +12,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("org.springframework.kafka:spring-kafka")
-    implementation("com.dpiataikin.microservice.common:response")
-    implementation("com.dpiataikin.microservice.common:util")
+    implementation("com.dpiataikin.microservice.common:response:unspecified")
     implementation("org.mapstruct:mapstruct")
     kapt("org.mapstruct:mapstruct-processor")
 }

@@ -16,7 +16,7 @@ class CreateContactUseCase(
         val contact: Contact,
     )
 
-    class Response(
+    data class Response(
         val contact: Contact
     )
 
