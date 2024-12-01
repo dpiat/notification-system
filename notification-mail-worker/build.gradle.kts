@@ -12,7 +12,7 @@ allprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "io.spring.dependency-management")
 
-    group = "com.dpiataikin.notifications-system.notification-service"
+    group = "com.dpiataikin.notifications-system.mail-worker"
     version = "0.0.1"
 
     repositories {
@@ -47,21 +47,33 @@ allprojects {
 
     dependencyManagement {
         dependencies {
+            // Base
             dependency("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:${springBootVersion}")
             dependency("org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}")
             dependency("org.springframework.boot:spring-boot-starter-webflux:${springBootVersion}")
+            dependency("org.springframework.boot:spring-boot-starter-data-r2dbc:${springBootVersion}")
+            dependency("org.springframework.kafka:spring-kafka:${springBootVersion}")
+            dependency("org.springframework.boot:spring-boot-starter-mail:${springBootVersion}")
+            dependency("org.springframework:spring-jdbc:5.3.23")
             dependency("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.1")
             dependency("io.projectreactor.kotlin:reactor-kotlin-extensions:1.2.3")
             dependency("org.jetbrains.kotlin:kotlin-reflect:1.9.25")
             dependency("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.1")
-            dependency("org.springframework.kafka:spring-kafka:${springBootVersion}")
-            dependency("org.projectlombok:lombok:1.18.36")
-            dependency("org.mapstruct:mapstruct:1.5.3.Final")
-            dependency("org.mapstruct:mapstruct-processor:1.5.3.Final")
+
+            // Notification System
             dependency("com.dpiataikin.microservice.common:event:unspecified")
             dependency("com.dpiataikin.microservice.common:response:unspecified")
             dependency("com.dpiataikin.microservice.common:util:unspecified")
             dependency("com.dpiataikin.microservice.common:usecase:unspecified")
+
+            // Mapstruct
+            dependency("org.mapstruct:mapstruct:1.5.3.Final")
+            dependency("org.mapstruct:mapstruct-processor:1.5.3.Final")
+
+            // Database
+            dependency("io.r2dbc:r2dbc-postgresql:0.8.10.RELEASE")
+            dependency("org.postgresql:postgresql:42.5.0")
+            dependency("org.flywaydb:flyway-core:9.6.0")
             //testImplementation("org.springframework.boot:spring-boot-starter-test")
             //testImplementation("io.projectreactor:reactor-test")
             //testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")

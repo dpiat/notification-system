@@ -1,11 +1,11 @@
-package com.dpiataikin.notificationservice.application
+package com.dpiataikin.notificationmailworker.application
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-open class NotificationServiceApplication
+class Application
 
 fun main(args: Array<String>) {
-    runApplication<NotificationServiceApplication>(*args)
+    runApplication<Application>(*args)
 }

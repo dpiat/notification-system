@@ -43,17 +43,36 @@ services:
       KAFKA_JMX_HOSTNAME: kafka
     networks:
       - internal
-  
+
   mongo:
     image: mongo:6-jammy
     ports:
       - '27017:27017'
     volumes:
       - mongo-db-data:/data/db
+    networks:
+      - internal
+  
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: notification_system
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    volumes:
+      - postgres-db-data:/var/lib/postgresql
+    networks:
+      - internal
 
 networks:
   internal:
-
+    external: true
+    
 volumes:
   mongo-db-data:
+    driver: local
+  postgres-db-data:
     driver: local

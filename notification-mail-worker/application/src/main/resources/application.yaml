@@ -1,0 +1,23 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: mail-worker
+
+  r2dbc:
+    url: r2dbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:notification_system}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASS:root}
+    properties:
+      schema: mail_worker
+
+mailsender:
+  host: ${MAILSENDER_HOST:smtp.gmail.com}
+  port: ${MAILSENDER_PORT:587}
+  username: ${MAILSENDER_USERNAME:}
+  password: ${MAILSENDER_PASSWORD:}
+
+event:
+  bootstrap-servers: ${BOOTSTRAP_SERVERS:localhost:29092}
+  service-name: mail-worker

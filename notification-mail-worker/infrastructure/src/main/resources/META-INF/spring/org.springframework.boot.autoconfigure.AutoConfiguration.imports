@@ -1,0 +1,4 @@
+com.dpiataikin.notificationmailworker.infrastructure.config.DatabaseConfig
+com.dpiataikin.notificationmailworker.infrastructure.config.MailSenderConfig
+com.dpiataikin.notificationmailworker.infrastructure.config.MapstructConfig
+com.dpiataikin.notificationmailworker.infrastructure.config.RepositoryConfig

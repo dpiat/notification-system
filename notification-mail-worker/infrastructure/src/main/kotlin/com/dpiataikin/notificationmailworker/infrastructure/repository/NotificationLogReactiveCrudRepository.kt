@@ -1,0 +1,6 @@
+package com.dpiataikin.notificationmailworker.infrastructure.repository
+
+import com.dpiataikin.notificationmailworker.infrastructure.domain.NotificationLogEntity
+import org.springframework.data.repository.reactive.ReactiveCrudRepository
+
+interface NotificationLogReactiveCrudRepository : ReactiveCrudRepository<NotificationLogEntity, String>

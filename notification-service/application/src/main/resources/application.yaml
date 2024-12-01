@@ -13,4 +13,4 @@ spring:
 
 event:
   bootstrap-servers: ${BOOTSTRAP_SERVERS:localhost:29092}
-  service-name: user-service
+  service-name: notification-service
