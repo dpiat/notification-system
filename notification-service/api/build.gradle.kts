@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.9.25"
-    kotlin("kapt") version "1.9.25"
+    id("maven-publish")
+    kotlin("jvm")
 }
 
 dependencies {
@@ -15,5 +15,15 @@ dependencies {
     implementation("com.dpiataikin.microservice.common:response:unspecified")
     implementation("com.dpiataikin.microservice.common:event:unspecified")
     implementation("org.mapstruct:mapstruct")
-    kapt("org.mapstruct:mapstruct-processor")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "${project.group}"
+            artifactId = "${project.name}"
+            version = "${project.version}"
+            from(components["kotlin"])
+        }
+    }
 }

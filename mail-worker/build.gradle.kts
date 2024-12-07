@@ -1,6 +1,7 @@
 plugins {
-    id("org.springframework.boot") version "3.4.0"
+    id("org.springframework.boot") version "3.4.0" apply false
     id("io.spring.dependency-management") version "1.1.6"
+    id("com.google.cloud.tools.jib") version "3.4.4" apply false
     kotlin("plugin.spring") version "1.9.25"
     kotlin("jvm") version "1.9.25"
     kotlin("kapt") version "1.9.25"
@@ -17,6 +18,7 @@ allprojects {
 
     repositories {
         mavenCentral()
+        mavenLocal()
         maven {
             name = "GitHub"
             url = uri("https://maven.pkg.github.com/dpiat/microservice-common-java")
@@ -48,7 +50,6 @@ allprojects {
     dependencyManagement {
         dependencies {
             // Base
-            dependency("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:${springBootVersion}")
             dependency("org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}")
             dependency("org.springframework.boot:spring-boot-starter-webflux:${springBootVersion}")
             dependency("org.springframework.boot:spring-boot-starter-data-r2dbc:${springBootVersion}")
@@ -74,6 +75,9 @@ allprojects {
             dependency("io.r2dbc:r2dbc-postgresql:0.8.10.RELEASE")
             dependency("org.postgresql:postgresql:42.5.0")
             dependency("org.flywaydb:flyway-core:9.6.0")
+
+            // Notification System
+            dependency("com.dpiataikin.notifications-system.notification-service:api:0.0.1")
             //testImplementation("org.springframework.boot:spring-boot-starter-test")
             //testImplementation("io.projectreactor:reactor-test")
             //testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")

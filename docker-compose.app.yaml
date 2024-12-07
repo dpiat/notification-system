@@ -1,7 +1,7 @@
 version: "3"
 services:
   notification-service:
-    image: notification-service
+    image: notification-system/com.dpiataikin.notifications-system.notification-service/application:latest
     restart: always
     environment:
       MONGO_DATASOURCE_URL: mongo
@@ -9,20 +9,23 @@ services:
       MONGO_DATASOURCE_DATABASE: mydb
       BOOTSTRAP_SERVERS: kafka:9092
     ports:
-      - 8080:8080
+      - 8081:8080
     networks:
       - internal
 
   mail-worker:
-    image: notification-service
+    image: notification-system/com.dpiataikin.notifications-system.mail-worker/application:latest
     restart: always
     environment:
-      MONGO_DATASOURCE_URL: mongo
-      MONGO_DATASOURCE_PORT: 27017
-      MONGO_DATASOURCE_DATABASE: mydb
-      BOOTSTRAP_SERVERS: kafka:9092
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: notification_system
+      POSTGRES_USER: postgres
+      POSTGRES_PASS: root
+      MAILSENDER_USERNAME: ${MAILSENDER_USERNAME}
+      MAILSENDER_PASSWORD: ${MAILSENDER_PASSWORD}
     ports:
-      - 8080:8080
+      - 8082:8080
     networks:
       - internal
 

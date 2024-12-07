@@ -12,7 +12,7 @@ class MailRepositoryImpl(
     override fun send(mail: Mail): Mono<Void> {
         val message = SimpleMailMessage().apply {
             from = mail.userFrom
-            setTo(*mail.userTo.toTypedArray())
+            setTo(mail.userTo)
             subject = mail.subject
             text = mail.body
         }

@@ -23,7 +23,7 @@ fun NotificationEventMapper.toDomainEvent(contactEntity: ContactEntity, notifica
         ContactType.EMAIL -> EmailNotification(
             id = contactEntity.id,
             userFrom = notification.userFrom,
-            userTo = contactEntity.userId,
+            userTo = contactEntity.value,
             subject = notification.subject,
             body = notification.body
         )

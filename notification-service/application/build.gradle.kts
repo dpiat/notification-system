@@ -31,7 +31,7 @@ val dockerImage: String by project
 
 jib {
     to {
-        image = "notification-system/${project.name}"
+        image = "notification-system/${project.group}/${project.name}"
         tags = setOf("${project.version}", "latest")
         auth {
             username = System.getenv("DOCKER_REGISTRY_USERNAME") ?: "default"
@@ -44,7 +44,6 @@ jib {
     }
 
     container {
-        mainClass = "com.dpiataikin.notificationservice.application.AppKt"
         ports = listOf("8080")
         environment = mapOf(
             "SOME_KEY" to "some_value",
