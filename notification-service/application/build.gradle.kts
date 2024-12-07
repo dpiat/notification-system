@@ -1,9 +1,10 @@
 plugins {
-    id("org.springframework.boot") version "3.4.0"
-    id("io.spring.dependency-management") version "1.1.6"
-    kotlin("plugin.spring") version "1.9.25"
-    kotlin("jvm") version "1.9.25"
-    kotlin("kapt") version "1.9.25"
+    id("org.springframework.boot")
+    id("io.spring.dependency-management")
+    id("com.google.cloud.tools.jib")
+    kotlin("plugin.spring")
+    kotlin("jvm")
+    kotlin("kapt")
 }
 
 dependencies {
@@ -24,4 +25,33 @@ dependencies {
     implementation("com.dpiataikin.microservice.common:util")
     implementation("org.mapstruct:mapstruct")
     kapt("org.mapstruct:mapstruct-processor")
+}
+
+val dockerImage: String by project
+
+jib {
+    to {
+        image = "notification-system/${project.name}"
+        tags = setOf("${project.version}", "latest")
+        auth {
+            username = System.getenv("DOCKER_REGISTRY_USERNAME") ?: "default"
+            password = System.getenv("DOCKER_REGISTRY_PASSWORD") ?: "default"
+        }
+    }
+
+    from {
+        image = dockerImage
+    }
+
+    container {
+        mainClass = "com.dpiataikin.notificationservice.application.AppKt"
+        ports = listOf("8080")
+        environment = mapOf(
+            "SOME_KEY" to "some_value",
+            "KEY" to "Value"
+        )
+        jvmFlags = listOf("-Xms512m", "-Xmx1024m") // JVM options for the container
+        creationTime = "USE_CURRENT_TIMESTAMP"
+        extraClasspath
+    }
 }

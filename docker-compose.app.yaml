@@ -13,6 +13,19 @@ services:
     networks:
       - internal
 
+  mail-worker:
+    image: notification-service
+    restart: always
+    environment:
+      MONGO_DATASOURCE_URL: mongo
+      MONGO_DATASOURCE_PORT: 27017
+      MONGO_DATASOURCE_DATABASE: mydb
+      BOOTSTRAP_SERVERS: kafka:9092
+    ports:
+      - 8080:8080
+    networks:
+      - internal
+
 networks:
   internal:
     driver: bridge
