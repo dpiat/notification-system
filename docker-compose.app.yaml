@@ -1,4 +1,4 @@
-version: "3"
+version: "3.2"
 services:
   notification-service:
     image: notification-system/com.dpiataikin.notifications-system.notification-service/application:latest
@@ -16,7 +16,21 @@ services:
   mail-worker:
     image: notification-system/com.dpiataikin.notifications-system.mail-worker/application:latest
     restart: always
+    ports:
+      - "8082-8085:8080"
+    deploy:
+      mode: replicated
+      replicas: 2
+      endpoint_mode: vip
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 250M
+        reservations:
+          cpus: '0.25'
+          memory: 150M
     environment:
+      BOOTSTRAP_SERVERS: kafka:9092
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
       POSTGRES_DB: notification_system
@@ -24,11 +38,9 @@ services:
       POSTGRES_PASS: root
       MAILSENDER_USERNAME: ${MAILSENDER_USERNAME}
       MAILSENDER_PASSWORD: ${MAILSENDER_PASSWORD}
-    ports:
-      - 8082:8080
     networks:
       - internal
 
 networks:
   internal:
-    driver: bridge
+    external: true

@@ -19,6 +19,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("org.springframework.kafka:spring-kafka")
+    implementation("org.flywaydb:flyway-core")
     implementation("com.dpiataikin.microservice.common:response")
     implementation("com.dpiataikin.notifications-system.notification-service:api")
     implementation("com.dpiataikin.microservice.common:event:unspecified")

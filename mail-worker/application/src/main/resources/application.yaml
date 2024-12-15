@@ -12,6 +12,13 @@ spring:
     properties:
       schema: mail_worker
 
+  flyway:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:notification_system}
+    user: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASS:root}
+    create-schemas: true
+    default-schema: mail_worker
+
 mailsender:
   host: ${MAILSENDER_HOST:smtp.gmail.com}
   port: ${MAILSENDER_PORT:587}

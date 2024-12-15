@@ -10,9 +10,10 @@ class NotificationRepositoryImpl(
     private val notificationLogReactiveCrudRepository: NotificationLogReactiveCrudRepository,
     private val notificationLogMapper: NotificationLogMapper
 ) : NotificationLogRepository {
-    override fun save(notificationLog: NotificationLog): Mono<Void> =
-        Mono.just(notificationLog)
-            .flatMap { Mono.just(notificationLogMapper.toNotificationLogEntity(it)) }
+    override fun save(notificationLog: NotificationLog): Mono<NotificationLog> =
+        notificationLogReactiveCrudRepository.findById(notificationLog.id)
+            .defaultIfEmpty(notificationLogMapper.toNotificationLogEntity(notificationLog))
+            .flatMap { Mono.just(notificationLogMapper.updateNotificationLog(it, notificationLog)) }
             .flatMap { notificationLogReactiveCrudRepository.save(it) }
-            .then(Mono.empty())
+            .flatMap { Mono.just(notificationLog) }
 }

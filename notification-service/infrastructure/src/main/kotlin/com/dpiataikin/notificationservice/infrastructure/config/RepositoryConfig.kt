@@ -24,12 +24,10 @@ open class RepositoryConfig {
 
     @Bean
     open fun notificationRepository(
-        contactMongoReactiveRepository: ContactMongoReactiveRepository,
         notificationEventMapper: NotificationEventMapper,
         eventPublisher: EventPublisher
     ): NotificationRepository {
         return NotificationRepositoryImpl(
-            contactMongoReactiveRepository,
             notificationEventMapper,
             eventPublisher
         )

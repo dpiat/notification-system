@@ -6,6 +6,8 @@ import com.dpiataikin.notificationservice.core.domain.Contact
 import com.dpiataikin.notificationservice.core.domain.ContactType
 import com.dpiataikin.notificationservice.core.domain.Notification
 import com.dpiataikin.notificationservice.infrastructure.domain.ContactEntity
+import org.apache.kafka.common.Uuid
+import org.apache.kafka.common.protocol.types.Field.UUID
 import org.mapstruct.InjectionStrategy
 import org.mapstruct.Mapper
 import org.mapstruct.NullValuePropertyMappingStrategy
@@ -18,12 +20,12 @@ import org.mapstruct.NullValuePropertyMappingStrategy
 )
 interface NotificationEventMapper
 
-fun NotificationEventMapper.toDomainEvent(contactEntity: ContactEntity, notification: Notification): DomainEvent {
-    return when (contactEntity.type) {
+fun NotificationEventMapper.toDomainEvent(contact: Contact, notification: Notification): DomainEvent {
+    return when (contact.type) {
         ContactType.EMAIL -> EmailNotification(
-            id = contactEntity.id,
+            id = Uuid.randomUuid().toString(),
             userFrom = notification.userFrom,
-            userTo = contactEntity.value,
+            userTo = contact.value,
             subject = notification.subject,
             body = notification.body
         )

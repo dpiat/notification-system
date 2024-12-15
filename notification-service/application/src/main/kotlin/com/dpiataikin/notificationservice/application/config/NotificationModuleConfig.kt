@@ -26,6 +26,7 @@ open class BotModuleConfig {
 
     @Bean
     open fun getSendNotificationUseCase(
+        contactRepository: ContactRepository,
         notificationRepository: NotificationRepository
-    ) = SendNotificationUseCase(notificationRepository)
+    ) = SendNotificationUseCase(contactRepository, notificationRepository)
 }

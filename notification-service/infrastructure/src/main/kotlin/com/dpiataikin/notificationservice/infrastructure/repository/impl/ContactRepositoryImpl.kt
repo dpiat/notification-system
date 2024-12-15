@@ -22,4 +22,9 @@ open class ContactRepositoryImpl(
         return contactMongoReactiveRepository.findAllByUserId(userId)
             .flatMap { contactEntity -> Mono.just(contactDatabaseMapper.toContact(contactEntity)) }
     }
+
+    override fun findAllContactsByUserIdIn(userIds: List<String>): Flux<Contact> {
+        return contactMongoReactiveRepository.findAllByUserIdIn(userIds)
+            .flatMap { contactEntity -> Mono.just(contactDatabaseMapper.toContact(contactEntity)) }
+    }
 }
