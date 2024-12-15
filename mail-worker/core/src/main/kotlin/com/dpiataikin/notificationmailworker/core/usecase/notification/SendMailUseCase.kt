@@ -3,8 +3,10 @@ package com.dpiataikin.notificationmailworker.core.usecase.notification
 import com.dpiataikin.notificationmailworker.core.domain.Mail
 import com.dpiataikin.notificationmailworker.core.domain.NotificationLog
 import com.dpiataikin.notificationmailworker.core.domain.NotificationLogStatus
+import com.dpiataikin.notificationmailworker.core.exception.NotificationHandledException
 import com.dpiataikin.notificationmailworker.core.usecase.UseCase
 import reactor.core.publisher.Mono
+import reactor.kotlin.core.publisher.doOnError
 import java.util.UUID
 
 class SendMailUseCase(
@@ -22,6 +24,10 @@ class SendMailUseCase(
             .flatMap { mailRepository.send(request.mail).thenReturn(it) }
             .flatMap { Mono.just(it.apply { it.status = NotificationLogStatus.SENT }) }
             .flatMap { notificationLogRepository.save(it) }
+            .onErrorResume(NotificationHandledException::class.java) {
+                print("${it.message}")
+                Mono.empty()
+            }
             .then(Mono.empty())
 
     class Request(
