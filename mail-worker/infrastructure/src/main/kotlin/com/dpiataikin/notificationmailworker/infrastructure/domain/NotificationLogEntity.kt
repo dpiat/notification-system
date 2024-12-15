@@ -17,9 +17,9 @@ data class NotificationLogEntity(
     var status: NotificationLogStatus,
 ) : Persistable<String> {
     @Transient
-    var isNeww: Boolean = false
+    var isNewFlag: Boolean = false
     @JvmName("getEntityId")
     override fun getId(): String = id
-    @JvmName("getIdffffffffffsNew")
-    override fun isNew(): Boolean = isNeww
+    @JvmName("getIsNew")
+    override fun isNew(): Boolean = isNewFlag
 }

@@ -11,7 +11,7 @@ import org.mapstruct.*
     nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
 )
 interface NotificationLogMapper {
-    @Mapping(target = "neww", expression = "java(true)")
+    @Mapping(target = "newFlag", expression = "java(true)")
     fun toNotificationLogEntity(notificationLog: NotificationLog): NotificationLogEntity
     fun updateNotificationLog(@MappingTarget notificationLogEntity: NotificationLogEntity, notificationLog: NotificationLog): NotificationLogEntity
 }
