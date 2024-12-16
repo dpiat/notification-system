@@ -12,6 +12,12 @@ spring:
     properties:
       schema: mail_worker
 
+  data:
+    mongodb:
+      host: ${MONGO_DATASOURCE_URL:localhost}
+      port: ${MONGO_DATASOURCE_PORT:27017}
+      database: ${MONGO_DATASOURCE_DATABASE:mydb}
+
   flyway:
     url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:notification_system}
     user: ${POSTGRES_USER:postgres}

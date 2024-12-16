@@ -5,5 +5,5 @@ data class Mail(
     val userFrom: String,
     val userTo: String,
     val subject: String,
-    val body: String
+    var body: String
 )

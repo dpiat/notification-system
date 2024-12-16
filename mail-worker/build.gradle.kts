@@ -50,9 +50,9 @@ allprojects {
     dependencyManagement {
         dependencies {
             // Base
-            dependency("org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}")
             dependency("org.springframework.boot:spring-boot-starter-webflux:${springBootVersion}")
             dependency("org.springframework.boot:spring-boot-starter-data-r2dbc:${springBootVersion}")
+            dependency("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:${springBootVersion}")
             dependency("org.springframework.kafka:spring-kafka:${springBootVersion}")
             dependency("org.springframework.boot:spring-boot-starter-mail:${springBootVersion}")
             dependency("org.springframework:spring-jdbc:5.3.23")
