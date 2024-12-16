@@ -5,14 +5,18 @@ import com.dpiataikin.notificationmailworker.core.domain.NotificationLog
 import com.dpiataikin.notificationmailworker.core.domain.NotificationLogStatus
 import com.dpiataikin.notificationmailworker.core.exception.NotificationHandledException
 import com.dpiataikin.notificationmailworker.core.usecase.UseCase
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 import reactor.core.publisher.Mono
-import reactor.kotlin.core.publisher.doOnError
-import java.util.UUID
+import java.util.*
 
 class SendMailUseCase(
     private val notificationLogRepository: NotificationLogRepository,
     private val mailRepository: MailRepository
 ) : UseCase<SendMailUseCase.Request, Mono<SendMailUseCase.Response>> {
+
+    val LOG: Logger = LogManager.getLogger(SendMailUseCase::class.java)
+
     override fun execute(request: Request): Mono<Response> =
         notificationLogRepository.save(
                 NotificationLog(
@@ -25,7 +29,7 @@ class SendMailUseCase(
             .flatMap { Mono.just(it.apply { it.status = NotificationLogStatus.SENT }) }
             .flatMap { notificationLogRepository.save(it) }
             .onErrorResume(NotificationHandledException::class.java) {
-                print("${it.message}")
+                LOG.info("${it.message}")
                 Mono.empty()
             }
             .then(Mono.empty())

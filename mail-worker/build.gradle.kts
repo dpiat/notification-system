@@ -76,6 +76,10 @@ allprojects {
             dependency("org.postgresql:postgresql:42.5.0")
             dependency("org.flywaydb:flyway-core:9.6.0")
 
+            // Logging
+            dependency("org.apache.logging.log4j:log4j-api:2.23.1")
+            dependency("org.apache.logging.log4j:log4j-to-slf4j:2.23.1")
+
             // Notification System
             dependency("com.dpiataikin.notifications-system.notification-service:api:0.0.1")
             //testImplementation("org.springframework.boot:spring-boot-starter-test")

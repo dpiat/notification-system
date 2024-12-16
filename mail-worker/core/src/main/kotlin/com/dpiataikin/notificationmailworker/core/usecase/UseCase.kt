@@ -1,8 +1,5 @@
 package com.dpiataikin.notificationmailworker.core.usecase
 
-import reactor.core.publisher.Mono
-import java.util.function.Function
-
 interface UseCase<in Request, out Response> {
     fun execute(request: Request): Response
 }
